@@ -48,7 +48,6 @@ class ViewController: UIViewController {
         
         do {
             let result = try context.fetch(request) as? [Job]
-//            let data = result?.first
             return result
         } catch {
             print("Fetching data Failed")
@@ -78,7 +77,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableCell
         let data = self.fetch()?[indexPath.row]
         cell.lblId.text = "ID:   \(data?.job_id ?? 0.0)"
-        cell.lblName.text = "NAME:   \(data?.name ?? "No Name")"
+        cell.txtName.text = "NAME:   \(data?.name ?? "No Name")"
+        cell.txtName.tag = indexPath.row
         return cell
     }
     
@@ -106,7 +106,48 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-class TableCell: UITableViewCell {
-    @IBOutlet weak var lblId: UILabel!
-    @IBOutlet weak var lblName: UILabel!
+class TableCell: UITableViewCell, UITextFieldDelegate {
+    @IBOutlet weak var lblId: UITextField!
+    @IBOutlet weak var txtName: UITextField!
+    
+    @IBAction func editSaveAction(_ sender: UIButton) {
+        self.txtName.isUserInteractionEnabled = !self.txtName.isUserInteractionEnabled
+        if sender.titleLabel?.text == "Edit" {
+            self.txtName.becomeFirstResponder()
+            sender.setTitle("Save", for: .normal)
+        }else {
+            if self.txtName.text!.isEmpty {
+                self.txtName.becomeFirstResponder()
+                return
+            }
+            let data = self.fetch()
+            data?[self.txtName.tag].name = self.txtName.text
+            do {
+                try CoreDataBase.context.save()
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+            sender.setTitle("Edit", for: .normal)
+        }
+    }
+    
+    func fetch() -> [Job]? {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Job")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request) as? [Job]
+            return result
+        } catch {
+            print("Fetching data Failed")
+            return nil
+        }
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
 }

@@ -56,30 +56,47 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0G-4o-puG">
-                                                    <rect key="frame" x="46" y="24.5" width="344" height="26"/>
+                                                    <rect key="frame" x="46" y="24.5" width="50" height="26"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXw-PQ-h8a">
-                                                    <rect key="frame" x="378" y="24.5" width="344" height="26"/>
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ae-kK-abb">
+                                                    <rect key="frame" x="116" y="24" width="300" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="300" id="k1S-Cd-Lys"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="oHY-Ew-a2j" id="gDr-Xw-BI4"/>
+                                                    </connections>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6T-f6-qjY">
+                                                    <rect key="frame" x="652" y="17.5" width="80" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="HpE-cW-1bx"/>
+                                                        <constraint firstAttribute="width" constant="80" id="pLe-bt-ciB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <state key="normal" title="Edit"/>
+                                                    <connections>
+                                                        <action selector="editSaveAction:" destination="oHY-Ew-a2j" eventType="touchUpInside" id="UeB-23-xfI"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="h0G-4o-puG" firstAttribute="centerY" secondItem="PQH-AY-Ipu" secondAttribute="centerY" id="0fd-fl-xIs"/>
-                                                <constraint firstItem="SXw-PQ-h8a" firstAttribute="centerY" secondItem="PQH-AY-Ipu" secondAttribute="centerY" id="AtB-b4-qLX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="L6T-f6-qjY" secondAttribute="trailing" constant="20" id="6P6-VQ-GLr"/>
+                                                <constraint firstItem="8ae-kK-abb" firstAttribute="centerY" secondItem="PQH-AY-Ipu" secondAttribute="centerY" id="D6P-ei-W2Y"/>
+                                                <constraint firstItem="8ae-kK-abb" firstAttribute="leading" secondItem="h0G-4o-puG" secondAttribute="trailing" constant="20" id="LQY-DW-w1x"/>
+                                                <constraint firstItem="L6T-f6-qjY" firstAttribute="centerY" secondItem="PQH-AY-Ipu" secondAttribute="centerY" id="LiM-VP-FuI"/>
                                                 <constraint firstItem="h0G-4o-puG" firstAttribute="leading" secondItem="PQH-AY-Ipu" secondAttribute="leadingMargin" constant="30" id="VT1-Cn-J95"/>
-                                                <constraint firstItem="SXw-PQ-h8a" firstAttribute="width" secondItem="PQH-AY-Ipu" secondAttribute="width" multiplier="0.5" constant="-40" id="hLG-2N-SL6"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="SXw-PQ-h8a" secondAttribute="trailing" constant="30" id="i8B-es-ZBo"/>
-                                                <constraint firstItem="h0G-4o-puG" firstAttribute="width" secondItem="PQH-AY-Ipu" secondAttribute="width" multiplier="0.5" constant="-40" id="sAt-5Z-dmQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lblId" destination="h0G-4o-puG" id="gk1-Tv-gM0"/>
-                                            <outlet property="lblName" destination="SXw-PQ-h8a" id="Bfz-9N-tuO"/>
+                                            <outlet property="txtName" destination="8ae-kK-abb" id="XvM-dc-02O"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
